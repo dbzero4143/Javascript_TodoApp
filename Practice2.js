@@ -11,38 +11,73 @@ const contentList = document.querySelector('#contentList');
 const todoList = [];
 const pageNumberArray = [];
 
+const index = 0;
+
 function inputContentProcess(){
     const p = document.createElement('p');
     const deleteBtn = document.createElement('button');
 
     const todoObj = {
         todo:inputContent.value,
-        index: todoList.length + 1
+        todoIndex: todoList.length + 1
     }
 
     //todo 입력
+    //todoList.push(JSON.stringify(todoObj));
     todoList.push(todoObj);
+
     console.log(todoList);
-    localStorage.setItem(todoObj.index,todoObj.todo);
+
+    localStorage.setItem(index,JSON.stringify(todoList));
     inputContent.value='';
 
     //todo 삭제
     deleteBtn.addEventListener("click", function(){
-        localStorage.removeItem(todoObj.index);
-        contentList.removeChild(p);
-        todoList.splice(0,1);
+        var todoListTodoDelete = JSON.parse(localStorage.getItem(0));
+        
+        for(var x in todoList){
+            var todoListTodoDelete = JSON.parse(localStorage.getItem(0));
+            todoList.splice(todoListTodoDelete[x].todoIndex,1);
+            console.log(todoListTodoDelete[x].todoIndex);
+        }
+
+        for(var y=0; todoList[y].length; y++){
+            todoList[y].todoIndex = todoList.length+1;
+        }
         console.log(todoList);
         
+        
+        localStorage.setItem(index,JSON.stringify(todoList));
+        contentList.removeChild(p);
+        //todoList.splice(0,1);
+        //console.log(todoList);
     })
 
     //todo 리스트
     function contentListLoad(){
-            deleteBtn.innerText = 'X';
-            p.innerHTML = todoObj.todo;
-            p.appendChild(deleteBtn);
-            contentList.appendChild(p);
+        deleteBtn.innerText = 'X';
+        p.setAttribute("draggable", "true");
+
+        for(var i in todoList){
+            var todoListTodo = JSON.parse(localStorage.getItem(0));
+            
+            p.innerHTML = todoListTodo[i].todo;
+        }
+        
+        p.appendChild(deleteBtn);
+        contentList.appendChild(p);
     }
     contentListLoad();
+
+    p.addEventListener("drag", function(){
+        console.log('drag start');
+    },false)
+
+    p.addEventListener("dragend", function () {
+        
+    })
+
+    
 
     //todo 수정
     p.addEventListener("click", function(){
