@@ -18,8 +18,7 @@ function inputContentProcess(){
     const deleteBtn = document.createElement('button');
 
     const todoObj = {
-        todo:inputContent.value,
-        todoIndex: todoList.length + 1
+        todo:inputContent.value
     }
 
     //todo 입력
@@ -33,21 +32,18 @@ function inputContentProcess(){
     inputContent.value='';
 
     //todo 삭제
-    deleteBtn.addEventListener("click", function(){
+    deleteBtn.addEventListener("click", function(event){
         //배열에 String으로 넣어둔 데이터를 다시 객체로 바꾸고 로컬 스토리지에서 꺼냄
-        var todoListTodoDelete = JSON.parse(localStorage.getItem(0));
-        
-
-        todoObj = {
-            todo:'',
-            todoIndex: ''
-        }
         
         
-        localStorage.removeItem(0);
+        console.log(p.textContent);
+        
+        console.log(todoList.indexOf(p.textContent));
+        
+        
+        
         localStorage.setItem(index,JSON.stringify(todoList));
-        //contentList.removeChild(p);
-        //todoList.splice(0,1);
+        
         //console.log(todoList);
     })
 
