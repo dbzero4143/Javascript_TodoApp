@@ -11,7 +11,7 @@ const contentList = document.querySelector('#contentList');
 const todoList = [];
 const pageNumberArray = [];
 
-const index = 0;
+const index = todoList.length;
 
 function inputContentProcess(){
     const p = document.createElement('p');
@@ -28,27 +28,25 @@ function inputContentProcess(){
 
     console.log(todoList);
 
+    //배열을 String으로 바꾸고 로컬 스토리지에 넣음
     localStorage.setItem(index,JSON.stringify(todoList));
     inputContent.value='';
 
     //todo 삭제
     deleteBtn.addEventListener("click", function(){
+        //배열에 String으로 넣어둔 데이터를 다시 객체로 바꾸고 로컬 스토리지에서 꺼냄
         var todoListTodoDelete = JSON.parse(localStorage.getItem(0));
         
-        for(var x in todoList){
-            var todoListTodoDelete = JSON.parse(localStorage.getItem(0));
-            todoList.splice(todoListTodoDelete[x].todoIndex,1);
-            console.log(todoListTodoDelete[x].todoIndex);
-        }
 
-        for(var y=0; todoList[y].length; y++){
-            todoList[y].todoIndex = todoList.length+1;
+        todoObj = {
+            todo:'',
+            todoIndex: ''
         }
-        console.log(todoList);
         
         
+        localStorage.removeItem(0);
         localStorage.setItem(index,JSON.stringify(todoList));
-        contentList.removeChild(p);
+        //contentList.removeChild(p);
         //todoList.splice(0,1);
         //console.log(todoList);
     })
