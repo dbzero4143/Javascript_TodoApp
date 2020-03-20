@@ -14,7 +14,9 @@ const pageNumberArray = [];
 const index = todoList.length;
 
 function inputContentProcess(){
-    const p = document.createElement('p');
+    const p = document.createElement('li');
+    const q = document.createElement('span');
+    const br = document.createElement('br');
     const deleteBtn = document.createElement('button');
 
     const todoObj = {
@@ -33,18 +35,17 @@ function inputContentProcess(){
 
     //todo 삭제
     deleteBtn.addEventListener("click", function(event){
-        //배열에 String으로 넣어둔 데이터를 다시 객체로 바꾸고 로컬 스토리지에서 꺼냄
-        
-        
-        console.log(p.textContent);
-        
-        console.log(todoList.indexOf(p.textContent));
-        
+        var todoListIndex = todoList.indexOf(todoObj.todo);
+
+        todoList.splice(todoListIndex,1);
+
+        contentList.removeChild(p);
+        contentList.removeChild(q);
+
+        console.log(contentList);
         
         
         localStorage.setItem(index,JSON.stringify(todoList));
-        
-        //console.log(todoList);
     })
 
     //todo 리스트
@@ -58,22 +59,40 @@ function inputContentProcess(){
             p.innerHTML = todoListTodo[i].todo;
         }
         
-        p.appendChild(deleteBtn);
-        contentList.appendChild(p);
+        q.appendChild(deleteBtn);
+        q.appendChild(br);
+        
+        contentList.appendChild(q);
+        
+        contentList.insertBefore(p,q);
+
+        p.style.display = 'inline-block';
     }
     contentListLoad();
 
+    //드래그 시작점
     p.addEventListener("drag", function(){
         console.log('drag start');
+
+        //드래그 시작되는 태그의 값 가져오기
+        var temp = todoObj.todo;
+        
+        console.log(temp);
+        
     },false)
 
     p.addEventListener("dragend", function () {
+        var todoListLocal = JSON.stringify(localStorage.getItem(0));
+
+        
+        console.log('dragend'+todoObj.todo);
+        
         
     })
 
     
 
-    //todo 수정
+    //todo 완료체크
     p.addEventListener("click", function(){
         p.style.textDecoration = 'line-through';
     })
