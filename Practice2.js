@@ -127,6 +127,17 @@ function inputContentProcess() {
 
 
 
+<<<<<<< HEAD
+=======
+    p.addEventListener("dragend", function () {
+        var todoListLocal = JSON.stringify(localStorage.getItem(0));
+
+        
+        console.log('dragend'+todoObj.todo);
+        
+        
+    })
+>>>>>>> parent of e82958a... commit update5
 
             replace_li(get_idx_of_li(select_li(), li), get_idx_of_li(select_li(), picked));
             set_local_list();

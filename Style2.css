@@ -1,9 +1,5 @@
 #main{
     text-align: center;
-    background-color: honeydew;
-    padding: 40px;
-    font-size: 30px;
-    color: black;
 }
 
 #selectDate {
@@ -22,14 +18,4 @@
     display: inline-block;
     margin-left: 10px;
     margin-top: 20px;
-}
-
-#content {
-    height:630px;
-    width:1026px;
-    position: relative;
-}
-
-footer {
-    background-color: lightgray;
 }
