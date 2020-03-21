@@ -82,10 +82,7 @@ function inputContentProcess(){
     },false)
 
     p.addEventListener("dragend", function () {
-        var todoListLocal = JSON.stringify(localStorage.getItem(0));
-
         
-        console.log('dragend'+todoObj.todo);
         
         
     })

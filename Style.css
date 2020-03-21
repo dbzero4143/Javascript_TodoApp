@@ -2,3 +2,41 @@
     text-align: center;
     margin-top: 250px;
 }
+
+h1{
+    font-family: 'Baloo Chettan 2', cursive;
+    color:lightgreen;
+}
+
+body{
+    background: white;
+    
+}
+
+#userId{
+    border-radius:5px;
+    border: 1px solid silver;
+    margin: 10px;
+    height:30px;
+}
+
+#userPw{
+    border-radius:5px;
+    border: 1px solid silver;
+    margin: 10px;
+    height:30px;
+}
+
+#loginBtn{
+    padding: 15px 0;
+    width:100px;
+    margin:5px;
+    background-color: white;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+#loginBtn:hover{
+    background-color: rgb(183, 224, 183);
+    color:white;
+}
