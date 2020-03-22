@@ -11,6 +11,7 @@ const contentList = document.querySelector('#contentList');
 const pageNumberArray = [];
 const todoList = []; 
 const index = todoList.length;
+<<<<<<< HEAD
 function is_dragend_element(element, mouse_coordinate) {
     function MyRect(x, y, w, h) {
         this.x = x;
@@ -21,6 +22,15 @@ function is_dragend_element(element, mouse_coordinate) {
             return this.x <= x && x <= this.x + this.width &&
                 this.y <= y && y <= this.y + this.height;
         }
+=======
+
+function inputContentProcess(){
+    const p = document.createElement('p');
+    const deleteBtn = document.createElement('button');
+
+    const todoObj = {
+        todo:inputContent.value
+>>>>>>> parent of b877fd6... commit update4
     }
     function outerWidth(el) {
         var width = el.offsetWidth;
@@ -50,6 +60,7 @@ function is_dragend_element(element, mouse_coordinate) {
 
 }
 
+<<<<<<< HEAD
 function select_li() {
     let list = [];
     for (let el of document.querySelectorAll('#contentList > li')) {
@@ -89,6 +100,23 @@ function inputContentProcess() {
     const deleteBtn = document.createElement('button');
 
     li.className = 'candidate';
+=======
+    //todo 삭제
+    deleteBtn.addEventListener("click", function(event){
+        //배열에 String으로 넣어둔 데이터를 다시 객체로 바꾸고 로컬 스토리지에서 꺼냄
+        
+        
+        console.log(p.textContent);
+        
+        console.log(todoList.indexOf(p.textContent));
+        
+        
+        
+        localStorage.setItem(index,JSON.stringify(todoList));
+        
+        //console.log(todoList);
+    })
+>>>>>>> parent of b877fd6... commit update4
 
     li.setAttribute("draggable", "true");
     deleteBtn.addEventListener("click", function (event) {
@@ -123,9 +151,21 @@ function inputContentProcess() {
                 //break;
             }
         }
+<<<<<<< HEAD
         if (picked) {
 
 
+=======
+        
+        p.appendChild(deleteBtn);
+        contentList.appendChild(p);
+    }
+    contentListLoad();
+
+    p.addEventListener("drag", function(){
+        console.log('drag start');
+    },false)
+>>>>>>> parent of b877fd6... commit update4
 
 <<<<<<< HEAD
 =======
@@ -164,6 +204,7 @@ function inputContentProcess() {
     
     // contentList.insertBefore(p, q);
 
+<<<<<<< HEAD
     //todo 완료체크
     if (false) {
         p.addEventListener("click", function () {
@@ -173,6 +214,15 @@ function inputContentProcess() {
             p.style.textDecoration = '';
         })
     }
+=======
+    //todo 수정
+    p.addEventListener("click", function(){
+        p.style.textDecoration = 'line-through';
+    })
+    p.addEventListener("dblclick", function(){
+        p.style.textDecoration = '';
+    })
+>>>>>>> parent of b877fd6... commit update4
 }
 // function move_to(element, idx) {
 //     let target = select_li()[idx + 1];
