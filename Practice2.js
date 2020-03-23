@@ -14,9 +14,7 @@ const pageNumberArray = [];
 const index = todoList.length;
 
 function inputContentProcess(){
-    const p = document.createElement('li');
-    const q = document.createElement('span');
-    const br = document.createElement('br');
+    const li = document.createElement('li');
     const deleteBtn = document.createElement('button');
 
     const todoObj = {
@@ -39,8 +37,7 @@ function inputContentProcess(){
 
         todoList.splice(todoListIndex,1);
 
-        contentList.removeChild(p);
-        contentList.removeChild(q);
+        contentList.removeChild(li);
 
         console.log(contentList);
         
@@ -51,47 +48,57 @@ function inputContentProcess(){
     //todo 리스트
     function contentListLoad(){
         deleteBtn.innerText = 'X';
-        p.setAttribute("draggable", "true");
+        li.setAttribute("draggable", "true");
+        li.setAttribute("id", "li");
 
         for(var i in todoList){
             var todoListTodo = JSON.parse(localStorage.getItem(0));
             
-            p.innerHTML = todoListTodo[i].todo;
+            li.innerHTML = todoListTodo[i].todo;
+            li.appendChild(deleteBtn);
         }
+        contentList.appendChild(li);
         
-        q.appendChild(deleteBtn);
-        q.appendChild(br);
-        
-        contentList.appendChild(q);
-        
-        contentList.insertBefore(p,q);
 
-        p.style.display = 'inline-block';
+        li.style.display = 'block';
+        
     }
     contentListLoad();
 
     //드래그 시작점
-    p.addEventListener("drag", function(event){
+    li.addEventListener("drag", function(event){
+        console.log('drag');
+        
+        console.log(li.innerText);
+        
         //드래그 시작점의 값 가져오기
-        event.dataTransfer.setData("data", 'Main');
-        event.dataTransfer.dropEffect = 'Move';
+        event.dataTransfer.setData("text", event.target.id);
+        
     },false)
 
-    p.addEventListener("dragover", function (event) {
+    li.addEventListener("dragover", function (event) {
         console.log('dargover');
-        
+        event.dataTransfer.dropEffect = "Move";
         event.preventDefault();
         
     })
 
-    p.addEventListener('drop', function () {
+    li.addEventListener('drop', function (event) {
+        event.preventDefault();
         console.log('drop');
-        console.log(event.dataTransfer.getData("data"));
+        event.target.appendChild(document.getElementById('li'));
+        console.dir(event.target);
+        for(var s=0; s<li.childNodes.length;s++){
+            console.log(li.childNodes[s]);
+            
+        }
+        
+        
         
         
     })
 
-    p.addEventListener("dragend", function (event) {
+    li.addEventListener("dragend", function (event) {
         console.log('dragend');
         var x = event.offsetX;
     })
@@ -100,11 +107,11 @@ function inputContentProcess(){
     
 
     //todo 완료체크
-    p.addEventListener("click", function(){
-        p.style.textDecoration = 'line-through';
+    li.addEventListener("click", function(){
+        li.style.textDecoration = 'line-through';
     })
-    p.addEventListener("dblclick", function(){
-        p.style.textDecoration = '';
+    li.addEventListener("dblclick", function(){
+        li.style.textDecoration = '';
     })
 }
 
