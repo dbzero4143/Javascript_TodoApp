@@ -1,5 +1,10 @@
 #main{
+    color: white;
     text-align: center;
+    background-color: cadetblue;
+    height: 50px;
+    padding-top: 30px;
+    padding-bottom: 10px;
 }
 
 #selectDate {

@@ -9,7 +9,6 @@ const contentClick = document.querySelector('#contentClick');
 const contentList = document.querySelector('#contentList');
 
 const todoList = [];
-const pageNumberArray = [];
 
 const index = todoList.length;
 
@@ -18,6 +17,7 @@ function inputContentProcess(){
     const deleteBtn = document.createElement('button');
 
     const todoObj = {
+        id: todoList.length,
         todo:inputContent.value
     }
 
@@ -72,7 +72,7 @@ function inputContentProcess(){
         console.log(li.innerText);
         
         //드래그 시작점의 값 가져오기
-        event.dataTransfer.setData("text", event.target.id);
+        event.dataTransfer.setData("text/plain", todoObj.id);
         
     },false)
 
@@ -88,11 +88,9 @@ function inputContentProcess(){
         console.log('drop');
         event.target.appendChild(document.getElementById('li'));
         console.dir(event.target);
-        for(var s=0; s<li.childNodes.length;s++){
-            console.log(li.childNodes[s]);
-            
-        }
         
+        //드래그 시작값 받기
+        event.dataTransfer.getData("text");
         
         
         

@@ -1,4 +1,39 @@
+
+
 #Container_1{
     text-align: center;
     margin-top: 250px;
+}
+
+h1{
+    color: white;
+}
+
+button{
+    display: block;
+    width:100px; 
+    height:30px; 
+    line-height:30px; 
+    border:1px white;
+    margin:15px auto; 
+    text-align:center; 
+    cursor: pointer; 
+    color:white; 
+    transition:all 0.9s, color 0.3;
+    background-color: black;
+    border-radius: 12px;
+}
+
+button:hover {
+    background-color: slateblue;
+}
+
+input:hover {
+    background-color: burlywood;
+}
+
+body {
+    background-image: url('seoul.jpg');
+    background-size: 100% auto;
+    
 }
